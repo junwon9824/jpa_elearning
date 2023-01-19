@@ -3,14 +3,12 @@ package io.sample.learn.dto;
 import io.sample.learn.entity.User;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 
-public class userdto {
+public class userSaveRequestdto {
     private Long id;
     private int age;
     private String name;
@@ -29,7 +27,7 @@ public class userdto {
 
 
     @Builder
-    public userdto(Long id, int age, String name ) {
+    public userSaveRequestdto(Long id, int age, String name ) {
         this.id = id;
         this.age = age;
         this.name = name;

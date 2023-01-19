@@ -46,4 +46,9 @@ public class User extends BaseTimeEntity {
         this.age = age;
     }
 
+    public void update(String name, int age) {
+        this.name = name;
+        this.age = age;
+
+    }
 }

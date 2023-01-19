@@ -2,14 +2,17 @@ package io.sample.learn.service;
 
 //import io.sample.learn.dto.userdto;
 
-import io.sample.learn.dto.userdto;
+import io.sample.learn.dto.userSaveRequestdto;
+import io.sample.learn.dto.userSaveResponsedto;
+import io.sample.learn.dto.userUpdateRequestdto;
 import io.sample.learn.entity.User;
 import io.sample.learn.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -17,14 +20,10 @@ import java.util.*;
 public class UserService {
     private final UserRepository userRepository;
 
-//
-//    public UserService(UserRepository userRepository) {
-//        this.userRepository = userRepository;
-//    }
-
     public User findById(Long id) {
         return userRepository.findById(id).get();
     }
+
 //
 //    @Transactional
 //    public Long save(String name, int age) {
@@ -45,7 +44,7 @@ public class UserService {
 
 
     @Transactional
-    public Long save(userdto dto) {
+    public Long save(userSaveResponsedto dto) {
         return userRepository.save(User.builder()
                 .name(dto.getName())
                 .age(dto.getAge())
@@ -54,6 +53,22 @@ public class UserService {
 
     }
 
+    @Transactional
+    public long update(Long id, userUpdateRequestdto dto){
+        User user=userRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당사람이 없습니다"));
+        user.update( dto.getName(),dto.getAge());
 
+        return id;
+    }
+//
+//    @Transactional
+//    public List<userSaveResponsedto> findall(){
+//
+//        return userRepository.findAll().stream()
+//                .map(User -> modelMapper.map  )
+//                .collect(Collectors.toList());
+//
+//
+//    }
 
 }

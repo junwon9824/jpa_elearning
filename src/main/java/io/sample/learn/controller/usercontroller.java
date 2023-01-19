@@ -2,13 +2,13 @@ package io.sample.learn.controller;
 
 //import io.sample.learn.dto.userdto;
 
-import io.sample.learn.dto.userdto;
+import io.sample.learn.dto.userSaveRequestdto;
+import io.sample.learn.dto.userSaveResponsedto;
+import io.sample.learn.dto.userUpdateRequestdto;
 import io.sample.learn.entity.User;
 import io.sample.learn.service.UserService;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +25,15 @@ public class usercontroller {
     public User getUser(@PathVariable Long id) {
         return userService.findById(id);
     }
+
+//
+//    @GetMapping("/users")
+//    public List<User> findall(){
+//        return userService.findall();
+//
+//    }
+
+
 //
 //    @PostMapping("/user")
 //    public Long save(@RequestParam String name, @RequestParam int age) {
@@ -37,9 +46,17 @@ public class usercontroller {
 //    }
 
     @PostMapping("/user")
-    public Long save(userdto dto) {
+    public Long save(userSaveResponsedto dto) {
         return userService.save(dto);
     }
+
+    @PutMapping("/user/{id}")
+    public Long update(@PathVariable Long id, userUpdateRequestdto dto)
+    {
+        return userService.update(id,dto);
+
+    }
+
 
 
 }

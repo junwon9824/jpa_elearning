@@ -38,6 +38,10 @@ dependencies {
 ///
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     implementation 'mysql:mysql-connector-java'
+    //mapper
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.1.1'
+    //streamer
+
 }
 
 test {

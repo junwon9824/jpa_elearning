@@ -9,6 +9,7 @@ import io.sample.learn.entity.User;
 import io.sample.learn.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.*;
 
 import java.util.List;
@@ -48,27 +49,34 @@ public class UserService {
         return userRepository.save(User.builder()
                 .name(dto.getName())
                 .age(dto.getAge())
-
                 .build()).getId();
 
     }
 
     @Transactional
-    public long update(Long id, userUpdateRequestdto dto){
-        User user=userRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당사람이 없습니다"));
-        user.update( dto.getName(),dto.getAge());
+    public long update(Long id, userUpdateRequestdto dto) {
+        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당사람이 없습니다"));
+        user.update(dto.getName(), dto.getAge());
 
         return id;
     }
-//
-//    @Transactional
-//    public List<userSaveResponsedto> findall(){
-//
-//        return userRepository.findAll().stream()
-//                .map(User -> modelMapper.map  )
-//                .collect(Collectors.toList());
-//
-//
-//    }
+
+
+    public List<userSaveResponsedto> findusers() {
+        return userRepository.findAll().stream()
+                .map(user -> userSaveResponsedto.from(user))
+                .collect(Collectors.toList());
+
+
+    }
+
+    @Transactional
+    public Long delete(Long id) {
+
+        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("user doesn't exist"));
+
+        userRepository.delete(user);
+        return user.getId();
+    }
 
 }

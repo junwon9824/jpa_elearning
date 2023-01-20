@@ -14,7 +14,7 @@ public class userSaveResponsedto {
 //    private LocalDateTime modifiedDate;
 
 
-     public userSaveResponsedto(Long id, int age, String name ) {
+    public userSaveResponsedto(Long id, int age, String name) {
         this.id = id;
         this.age = age;
         this.name = name;
@@ -22,5 +22,10 @@ public class userSaveResponsedto {
 
     }
 
+    public static userSaveResponsedto from(User user) {
+        if (user == null) return null;
+
+        return new userSaveResponsedto(user.getId(), user.getAge(), user.getName());
+    }
 
 }

@@ -9,6 +9,7 @@ import io.sample.learn.entity.User;
 import io.sample.learn.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,12 +27,12 @@ public class usercontroller {
         return userService.findById(id);
     }
 
-//
-//    @GetMapping("/users")
-//    public List<User> findall(){
-//        return userService.findall();
-//
-//    }
+
+    @GetMapping("/users")
+    public List<userSaveResponsedto> findall() {
+        return userService.findusers();
+
+    }
 
 
 //
@@ -51,12 +52,16 @@ public class usercontroller {
     }
 
     @PutMapping("/user/{id}")
-    public Long update(@PathVariable Long id, userUpdateRequestdto dto)
-    {
-        return userService.update(id,dto);
+    public Long update(@PathVariable Long id, userUpdateRequestdto dto) {
+        return userService.update(id, dto);
 
     }
 
+    @DeleteMapping("user/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+          userService.delete(id);
+         return ResponseEntity.ok("delete success"+id);
+    }
 
 
 }

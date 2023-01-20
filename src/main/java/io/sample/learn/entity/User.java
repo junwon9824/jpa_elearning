@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class) /* JPA에게 해당 Entity는 Auditiong 기능을 사용함을 알립니다. */
-@Table(name="users")
+//@Table(name="user")
 
 public class User extends BaseTimeEntity {
 
@@ -39,18 +39,28 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private String name;
 
+    private String password;
+
     @Column(nullable = false)
     private int age;
 
+    @Column(nullable = false)
+    private String email;
+
     @Builder
-    public User(String name, int age) {
+    public User(String name, int age,String email,String password) {
         this.name = name;
         this.age = age;
+        this.email= email;
+        this.password= password;
     }
 
-    public void update(String name, int age) {
+    public void update(String name, int age,String email,String password) {
         this.name = name;
         this.age = age;
-
+        this.email= email;
+        this.password= password;
     }
+
+
 }

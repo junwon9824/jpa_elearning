@@ -25,38 +25,25 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
-//
-//    @Transactional
-//    public Long save(String name, int age) {
-//        return userRepository.save(User.builder()
-//                .name(name)
-//                .age(age)
-//                .build()).getId();
-//    }
-
-//
-//    @Transactional
-//    public Long save2(User user) {
-//        return userRepository.save(User.builder()
-//                .name(user.getName())
-//                .age(user.getAge())
-//                .build()).getId();
-//    }
-
 
     @Transactional
     public Long save(userSaveResponsedto dto) {
         return userRepository.save(User.builder()
                 .name(dto.getName())
                 .age(dto.getAge())
+                .email(dto.getEmail())
+                .password(dto.getPassword())
                 .build()).getId();
 
     }
 
+
+
     @Transactional
     public long update(Long id, userUpdateRequestdto dto) {
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당사람이 없습니다"));
-        user.update(dto.getName(), dto.getAge());
+
+        user.update(dto.getName(), dto.getAge(), dto.getEmail(), dto.getPassword());
 
         return id;
     }

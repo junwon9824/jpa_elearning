@@ -13,10 +13,15 @@ public class userUpdateRequestdto {
     private int age;
     private String name;
 
+    private String  email;
+    private String  password;
+
     public User toEntity() {
         User build = User.builder()
                 .age(age)
                 .name(name)
+                .email(email)
+                .password(password)
                 .build();
         return build;
 
@@ -24,9 +29,11 @@ public class userUpdateRequestdto {
 
 
     @Builder
-    public userUpdateRequestdto(int age, String name) {
+    public userUpdateRequestdto(int age, String name,String email ,String password ) {
         this.age = age;
         this.name = name;
+        this.email = email;
+        this.password= password;
 
 
     }

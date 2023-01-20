@@ -28,15 +28,7 @@ public class User extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//
-//    @CreatedDate
-//    @Column(updatable = true)
-//    private LocalDateTime createdDate;
-//
-//    @LastModifiedDate
-//    private LocalDateTime modifiedDate;
-
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String name;
 
     private String password;
@@ -47,20 +39,31 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private String email;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
+
     @Builder
-    public User(String name, int age,String email,String password) {
+    public User(String name, int age,String email,String password,Role role) {
         this.name = name;
         this.age = age;
         this.email= email;
         this.password= password;
+        this.role= role;
     }
 
-    public void update(String name, int age,String email,String password) {
+    public void update(String name, int age,String email,String password,Role role) {
         this.name = name;
         this.age = age;
         this.email= email;
         this.password= password;
+        this.role= role;
     }
 
+    public boolean isequalpassword(String password)
+    {
+        return this.password.equals(password);
+    }
 
 }

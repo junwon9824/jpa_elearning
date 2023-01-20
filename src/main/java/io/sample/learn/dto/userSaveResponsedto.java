@@ -1,5 +1,6 @@
 package io.sample.learn.dto;
 
+import io.sample.learn.entity.Role;
 import io.sample.learn.entity.User;
 import lombok.*;
 
@@ -13,17 +14,20 @@ public class userSaveResponsedto {
     private String email;
 
     private String password;
+    private Role role;
 
 //    private LocalDateTime createdDate;
 //    private LocalDateTime modifiedDate;
 
 
-    public userSaveResponsedto(Long id, int age, String name, String email, String password) {
+    public userSaveResponsedto(Long id, int age, String name, String email, String password,Role role) {
         this.id = id;
         this.age = age;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.role =role;
+
 
     }
 
@@ -31,7 +35,7 @@ public class userSaveResponsedto {
         if (user == null) return null;
 
         return new userSaveResponsedto(user.getId(), user.getAge(), user.getName(),
-                user.getEmail(),user.getPassword());
+                user.getEmail(),user.getPassword(),user.getRole());
     }
 
 }

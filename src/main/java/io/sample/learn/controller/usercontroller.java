@@ -1,7 +1,7 @@
 package io.sample.learn.controller;
 
 
- import io.sample.learn.dto.userSaveResponsedto;
+import io.sample.learn.dto.userSaveResponsedto;
 import io.sample.learn.dto.userUpdateRequestdto;
 import io.sample.learn.entity.User;
 import io.sample.learn.service.UserService;
@@ -54,7 +54,7 @@ public class usercontroller {
     @PostMapping("/user")
     public String save(  userSaveResponsedto dto) {
         Long id=userService.save(dto);
-        return "Your id:"+id;
+        return "your nmuber is "+id;
 
     }
 
@@ -66,13 +66,12 @@ public class usercontroller {
 
     @DeleteMapping("user/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
-          userService.delete(id);
-         return ResponseEntity.ok("delete success id:"+id);
+        userService.delete(id);
+        return ResponseEntity.ok("delete success id:"+id);
     }
 //
 //    @PostMapping("/login")
 //    public
 
 }
-
 

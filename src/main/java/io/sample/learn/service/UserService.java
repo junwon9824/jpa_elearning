@@ -33,17 +33,17 @@ public class UserService {
                 .age(dto.getAge())
                 .email(dto.getEmail())
                 .password(dto.getPassword())
+                .role(dto.getRole())
                 .build()).getId();
 
     }
-
 
 
     @Transactional
     public long update(Long id, userUpdateRequestdto dto) {
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당사람이 없습니다"));
 
-        user.update(dto.getName(), dto.getAge(), dto.getEmail(), dto.getPassword());
+        user.update(dto.getName(), dto.getAge(), dto.getEmail(), dto.getPassword(),dto.getRole());
 
         return id;
     }

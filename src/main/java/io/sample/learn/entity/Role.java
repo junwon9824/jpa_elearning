@@ -1,14 +1,34 @@
 package io.sample.learn.entity;
 
 import lombok.*;
-import lombok.RequiredArgsConstructor;
 
+import jakarta.persistence.*;
+
+@Setter
 @Getter
-@RequiredArgsConstructor
-public enum Role {
-    USER("ROLE_USER"),
-    TEACHER("ROLE_TEACHER"),
-    ADMIN("ROLE_ADMIN");
+@Entity
+@Table(name = "roles",
+        uniqueConstraints= {
+        @UniqueConstraint(columnNames = {"name"})
+ })
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 
-    private final String value;
+public class Role {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(length = 60)
+    private String name;
+
+
+//    @Builder
+//    public User(String name, int age,String email,String password,Role role) {
+//    public Role(String name) {
+//
+//        this.name = name;
+//
+//    }
+
 }

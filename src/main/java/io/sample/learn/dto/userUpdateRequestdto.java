@@ -1,6 +1,6 @@
 package io.sample.learn.dto;
 
-import io.sample.learn.entity.Role;
+//import io.sample.learn.entity.Role;
 import io.sample.learn.entity.User;
 import lombok.*;
 
@@ -16,7 +16,7 @@ public class userUpdateRequestdto {
 
     private String  email;
     private String  password;
-    private Role role;
+//    private Role role;
 
     public User toEntity() {
         User build = User.builder()
@@ -24,7 +24,7 @@ public class userUpdateRequestdto {
                 .name(name)
                 .email(email)
                 .password(password)
-                .role(role)
+//                .role(role)
                 .build();
         return build;
 
@@ -32,12 +32,13 @@ public class userUpdateRequestdto {
 
 
     @Builder
-    public userUpdateRequestdto(int age, String name,String email ,String password,Role role ) {
+//    public userUpdateRequestdto(int age, String name,String email ,String password,Role role ) {
+    public userUpdateRequestdto(int age, String name,String email ,String password) {
         this.age = age;
         this.name = name;
         this.email = email;
         this.password= password;
-        this.role=role;
+//        this.role=role;
 
 
     }

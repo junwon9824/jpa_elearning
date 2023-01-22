@@ -6,9 +6,9 @@ import io.sample.learn.dto.SignUpDto;
 import io.sample.learn.dto.userSaveRequestdto;
 import io.sample.learn.dto.userSaveResponsedto;
 import io.sample.learn.dto.userUpdateRequestdto;
-import io.sample.learn.entity.Role;
+//import io.sample.learn.entity.Role;
 import io.sample.learn.entity.User;
-import io.sample.learn.repository.RoleRepository;
+//import io.sample.learn.repository.RoleRepository;
 import io.sample.learn.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -31,10 +31,10 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService     {
     private final UserRepository userRepository;
 
-    private final RoleRepository roleRepository;
+//    private final RoleRepository roleRepository;
 
 
     private final PasswordEncoder passwordEncoder;
@@ -86,45 +86,6 @@ public class UserService implements UserDetailsService {
         return user.getId();
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
-        User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
-                .orElseThrow(() ->
-                        new UsernameNotFoundException("User not found with username or email: "+ usernameOrEmail));
-
-        Set<GrantedAuthority> authorities = user
-                .getRoles()
-                .stream()
-                .map((role) -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toSet());
-
-        return new org.springframework.security.core.userdetails.User(user.getEmail(),
-                user.getPassword(),
-                authorities);
-    }
-
-
-    public ResponseEntity<?> registeradmin(SignUpDto signUpDto) {
-
-        String name = signUpDto.getName();
-
-        String username = signUpDto.getUsername();
-        String email = signUpDto.getEmail();
-        String pwd = signUpDto.getPassword();
-        int age = signUpDto.getAge();
-        // create user object
-        User user = new User(name, username, email, pwd, age);
-
-
-        Role roles = roleRepository.findByName("ADMIN").get();
-
-        user.setRoles(Collections.singleton(roles));
-
-
-        userRepository.save(user);
-
-        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
-
-    }
 
 
 }

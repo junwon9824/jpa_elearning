@@ -3,6 +3,7 @@ package io.sample.learn.service;
 import io.sample.learn.config.*;
 import io.sample.learn.dto.*;
 import io.sample.learn.entity.*;
+import io.sample.learn.jwt.JwtProvider;
 import io.sample.learn.repository.*;
 import jakarta.transaction.*;
 import lombok.*;

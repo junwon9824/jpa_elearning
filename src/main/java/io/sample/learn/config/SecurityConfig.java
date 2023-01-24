@@ -1,5 +1,7 @@
 package io.sample.learn.config;
 
+import io.sample.learn.jwt.JwtAuthenticationFilter;
+import io.sample.learn.jwt.JwtProvider;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

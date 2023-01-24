@@ -28,3 +28,7 @@
   thymeleaf:
     prefix: file:src/main/resources/templates/
     cache: false
+
+  jwt:
+    secret:
+      key: youcantrevealthesecretkey1234012300040

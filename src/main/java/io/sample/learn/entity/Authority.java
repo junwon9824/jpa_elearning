@@ -8,6 +8,7 @@ import lombok.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor @Builder
+
 public class Authority {
 
     @Id
@@ -17,12 +18,13 @@ public class Authority {
 
     private String name;
 
-    @JoinColumn(name = "member")
+    @JoinColumn(name = "members")
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    private Member member;
+    private Member members;
 
     public void setMember(Member member) {
-        this.member = member;
+        this.members = member;
     }
+
 }

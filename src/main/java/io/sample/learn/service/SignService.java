@@ -42,7 +42,7 @@ public class SignService {
 
     }
 
-    public boolean register(SignRequest request) throws Exception {
+    public String register(SignRequest request) throws Exception {
         try {
             Member member = Member.builder()
                     .account(request.getAccount())
@@ -59,7 +59,7 @@ public class SignService {
             System.out.println(e.getMessage());
             throw new Exception("잘못된 요청입니다.");
         }
-        return true;
+        return "register success ";
     }
 
     public SignResponse getMember(String account) throws Exception {

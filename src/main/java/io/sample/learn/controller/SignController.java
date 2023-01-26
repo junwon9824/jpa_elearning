@@ -20,7 +20,7 @@ public class SignController {
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<Boolean> signup(@RequestBody SignRequest request) throws Exception {
+    public ResponseEntity<String> signup(@RequestBody SignRequest request) throws Exception {
         return new ResponseEntity<>(memberService.register(request), HttpStatus.OK);
     }
 

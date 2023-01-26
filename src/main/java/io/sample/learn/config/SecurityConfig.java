@@ -68,26 +68,6 @@ public class SecurityConfig {
                         .anyRequest().denyAll()
                 )
 
- //oldversion below
-
-
-//
-//                // 조건별로 요청 허용/제한 설정
-//                .authorizeRequests()
-//
-//                // 회원가입과 로그인은 모두 승인
-//                .antMatchers("/register", "/login").permitAll()
-//                // /admin으로 시작하는 요청은 ADMIN 권한이 있는 유저에게만 허용
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-//                // /user 로 시작하는 요청은 USER 권한이 있는 유저에게만 허용
-//                .antMatchers("/user/**").hasRole("USER")
-//
-//                .anyRequest().denyAll()
-
-
-
-//                .and()
-
 
                 // JWT 인증 필터 적용
                 .addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
@@ -110,8 +90,10 @@ public class SecurityConfig {
                         response.setStatus(401);
                         response.setCharacterEncoding("utf-8");
                         response.setContentType("text/html; charset=UTF-8");
+
+
                         response.getWriter().write("인증되지 않은 사용자입니다.");
-                    }
+                     }
                 });
 
         return http.build();

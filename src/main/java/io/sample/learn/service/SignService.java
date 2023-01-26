@@ -12,6 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -66,6 +69,32 @@ public class SignService {
         Member member = memberRepository.findByAccount(account)
                 .orElseThrow(() -> new Exception("계정을 찾을 수 없습니다."));
         return new SignResponse(member);
+    }
+
+    public List<alluserresponse> getmembers() throws Exception {
+        return memberRepository.findAll().stream()
+                .map(member -> alluserresponse.from(member))
+                .collect(Collectors.toList());
+    }
+
+    public String deleteaccount(String account) throws Exception {
+
+        Member member = memberRepository.findByAccount(account)
+                .orElseThrow(() -> new Exception("can't find account"));
+        memberRepository.delete(member);
+        return "deleted account " + member.getAccount();
+
+
+    }
+
+    public String modifypwd(String account, String password) throws Exception {
+        Member member = memberRepository.findByAccount(account).
+                orElseThrow(() -> new Exception("can't find account"));
+
+        member.setPassword(passwordEncoder.encode(password));
+
+        return "password changed to " + password;
+
     }
 
 }

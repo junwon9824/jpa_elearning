@@ -9,6 +9,7 @@ import java.util.*;
 
 @Entity
 @Getter
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,6 +39,11 @@ public class Member extends BaseTimeEntity {
     public void setRoles(List<Authority> role) {
         this.roles = role;
         role.forEach(o -> o.setMember(this));
+    }
+
+    public void setPassword(String pwd)
+    {
+        this.password=pwd;
     }
 
 }

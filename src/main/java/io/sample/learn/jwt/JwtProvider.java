@@ -5,7 +5,7 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import io.sample.learn.entity.Authority;
+import io.sample.learn.entity.Roles;
 import io.sample.learn.service.JpaUserDetailsService;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,7 +41,7 @@ public class JwtProvider {
     }
 
     // 토큰 생성
-    public String createToken(String account, List<Authority> roles) {
+    public String createToken(String account, List<Roles> roles) {
         Claims claims = Jwts.claims().setSubject(account);
         claims.put("roles", roles);
         Date now = new Date();

@@ -12,7 +12,9 @@ import java.util.Optional;
 @Transactional
 public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByAccount(String account);
-    List<Member> findAll();
+     List<Member> findAll();
 
+     Member findByemail(String email);
     Optional<String > deleteByAccount(String account);
+
 }

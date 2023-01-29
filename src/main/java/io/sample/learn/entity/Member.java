@@ -33,24 +33,24 @@ public class Member extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "members", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Builder.Default
-    private List<Authority> roles = new ArrayList<>();
-
-//
-//    @OneToMany(mappedBy = "members", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @Builder.Default
-//    private List< file> boughtfiles = new ArrayList<>();
-//
-//
-//    @OneToMany(mappedBy = "members", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @Builder.Default
-//    private List< file> sellingfiles = new ArrayList<>();
+    private List<Roles> roles = new ArrayList<>();
 
 
 
-    public void setRoles(List<Authority> role) {
+    @OneToMany(mappedBy = "member")
+    private List<BuyFiles> files = new ArrayList<>();
+
+
+    public void setRoles(List<Roles> role) {
         this.roles = role;
         role.forEach(o -> o.setMember(this));
     }
+
+
+    public void setFile(List<BuyFiles> files) {
+        this.files= files;
+     }
+
 
     public void setPassword(String pwd)
     {

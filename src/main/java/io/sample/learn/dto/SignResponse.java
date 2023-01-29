@@ -1,6 +1,6 @@
 package io.sample.learn.dto;
 
-import io.sample.learn.entity.Authority;
+import io.sample.learn.entity.Roles;
 import io.sample.learn.entity.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +26,7 @@ public class SignResponse {
 
     private String email;
 
-    private List<Authority> roles = new ArrayList<>();
+    private List<Roles> roles = new ArrayList<>();
 
     private String token;
 

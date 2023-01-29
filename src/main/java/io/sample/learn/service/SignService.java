@@ -1,6 +1,5 @@
 package io.sample.learn.service;
 
-import io.sample.learn.config.*;
 import io.sample.learn.dto.*;
 import io.sample.learn.entity.*;
 import io.sample.learn.jwt.JwtProvider;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,7 +59,7 @@ public class SignService {
                     .email(request.getEmail())
                     .build();
 
-            member.setRoles(Collections.singletonList(Authority.builder().name("ROLE_USER").build()));
+            member.setRoles(Collections.singletonList(Roles.builder().name("ROLE_USER").build()));
 
 
             memberRepository.save(member);

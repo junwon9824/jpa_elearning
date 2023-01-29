@@ -5,6 +5,7 @@ import io.sample.learn.entity.Member;
 import io.sample.learn.repository.*;
 import io.sample.learn.service.*;
 import lombok.*;
+import org.apache.catalina.User;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,8 @@ public class SignController {
 
     private final MemberRepository memberRepository;
     private final SignService memberService;
+
+    private final UserService userService;
 
     @PostMapping(value = "/login")
     public ResponseEntity<SignResponse> signin(@RequestBody SignRequest request) throws Exception {
@@ -55,4 +58,6 @@ public class SignController {
 
 
     }
+
+
 }

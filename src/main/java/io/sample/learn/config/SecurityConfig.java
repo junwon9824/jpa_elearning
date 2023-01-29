@@ -2,6 +2,7 @@ package io.sample.learn.config;
 
 import io.sample.learn.jwt.JwtAuthenticationFilter;
 import io.sample.learn.jwt.JwtProvider;
+import io.sample.learn.repository.MemberRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,6 +29,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig {
+    private final MemberRepository memberRepository;
 
     private final JwtProvider jwtProvider;
 
@@ -58,7 +60,7 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
 
- // new version
+                // new version
 
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/user/**").hasRole("USER")
@@ -67,6 +69,11 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().denyAll()
                 )
+//
+//                //추가된코드
+//                .logout().disable() // 6
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
 
 
                 // JWT 인증 필터 적용
@@ -87,14 +94,33 @@ public class SecurityConfig {
                     @Override
                     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
                         // 인증문제가 발생했을 때 이 부분을 호출한다.
-                        response.setStatus(401);
-                        response.setCharacterEncoding("utf-8");
-                        response.setContentType("text/html; charset=UTF-8");
+
+                        if(response.getStatus()==500)
+                        {
+                             response.setCharacterEncoding("utf-8");
+                            response.setContentType("text/html; charset=UTF-8");
+
+                            response.getWriter().write("사용자가 db에 존재 또는 존재하지 않습니다");
+
+                        }
+                        else
+                        {
 
 
-                        response.getWriter().write("인증되지 않은 사용자입니다.");
-                     }
+                            response.setStatus(401);
+
+
+                            response.setCharacterEncoding("utf-8");
+                            response.setContentType("text/html; charset=UTF-8");
+
+
+                            response.getWriter().write("인증되지 않은 사용자입니다.");
+                            response.getWriter().write("올바른 토큰을 입력해주세요");
+
+                        }
+                    }
                 });
+
 
         return http.build();
     }

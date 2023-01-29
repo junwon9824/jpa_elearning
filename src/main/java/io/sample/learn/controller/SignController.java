@@ -25,6 +25,7 @@ public class SignController {
     @PostMapping(value = "/register")
     public ResponseEntity<String> signup(@RequestBody SignRequest request) throws Exception {
         return new ResponseEntity<>(memberService.register(request), HttpStatus.OK);
+
     }
 
     @GetMapping(value = "/user/get")
@@ -36,11 +37,6 @@ public class SignController {
     public ResponseEntity<List<alluserresponse>> getmembers() throws Exception {
         return new ResponseEntity<>(memberService.getmembers(), HttpStatus.OK);
     }
-//
-//     return userRepository.findAll().stream()
-//    //                .map(user -> userSaveResponsedto.from(user))
-////                .collect(Collectors.toList());
-////
 
     @GetMapping(value = "/admin/get")
     public ResponseEntity<SignResponse> getUserForAdmin(@RequestParam String account) throws Exception {

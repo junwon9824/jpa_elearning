@@ -44,9 +44,15 @@ public class SignService {
                 .build();
 
     }
+    @Transactional
+//    public String register(SignRequest request) throws Exception {
+    public String register(SignRequest request)  {
+//        try {
+            if(memberRepository.findByAccount(request.getAccount()).isPresent()) {
+                throw new IllegalArgumentException("account exists.");
 
-    public String register(SignRequest request) throws Exception {
-        try {
+            }
+
             Member member = Member.builder()
                     .account(request.getAccount())
                     .password(passwordEncoder.encode(request.getPassword()))
@@ -57,17 +63,24 @@ public class SignService {
 
             member.setRoles(Collections.singletonList(Authority.builder().name("ROLE_USER").build()));
 
+
             memberRepository.save(member);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new Exception("잘못된 요청입니다.");
-        }
-        return "register success ";
+            return "register success ";
+
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            System.out.println("sssss");
+//
+//            throw new Exception("wrong request");
+//
+//        }
+
+
     }
 
     public SignResponse getMember(String account) throws Exception {
         Member member = memberRepository.findByAccount(account)
-                .orElseThrow(() -> new Exception("계정을 찾을 수 없습니다."));
+                .orElseThrow(() -> new Exception("cannot find account"));
         return new SignResponse(member);
     }
 

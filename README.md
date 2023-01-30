@@ -141,6 +141,31 @@ request parameter : string password
 
 
 # file
+
+
+ <details markdown="1">
+<summary> 파일 생성 </summary>
+ 
+post 방식
+##  /user/save/file
+  
+     RequestBody  
+      String text;
+
+      String description;
+
+      String filepath;
+     
+   
+    
+</details>
+
+
+
+
+
+
+
  <details markdown="1">
 <summary> 구매한 파일 </summary>
  

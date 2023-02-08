@@ -155,7 +155,8 @@ post 방식
       String description;
 
       String filepath;
-     
+       Long price;
+
    
     
 </details>
@@ -189,6 +190,7 @@ post 방식
       String email;
       String filetext;
 
+만약 사용자의 돈이 부족하면 파일 구매할수 없다
     
 </details>
 

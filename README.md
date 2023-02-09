@@ -29,8 +29,7 @@
 
  ## /register
 
-![image](https://user-images.githubusercontent.com/42957005/217291569-576a5cfa-f12e-4b90-bc74-3278eb77ad29.png)
- 
+![image](https://user-images.githubusercontent.com/42957005/217699539-c8b66b27-3af6-44fa-b718-7e65a640857c.png) 
 </details>
 
 

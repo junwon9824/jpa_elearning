@@ -135,6 +135,13 @@ request parameter : string password
 
 
 
+ <details markdown="1">
+<summary> 포인트 추가하기 </summary>
+ 
+  ![image](https://user-images.githubusercontent.com/42957005/217707617-98c4920d-be7a-498f-b971-19abfd4914d0.png)
+</details>
+
+
 
 
 

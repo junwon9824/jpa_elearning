@@ -100,8 +100,7 @@ request parameter : string password
 
  ## /user/get
   RequestParam String account
-![image](https://user-images.githubusercontent.com/42957005/215475988-287a26ec-8c2d-4048-9937-d7ba4b251fc7.png)
-
+![image](https://user-images.githubusercontent.com/42957005/217708023-8ebdd491-12d2-42a8-a27f-e71729b010b5.png)
 </details>
  
 

@@ -151,7 +151,7 @@ request parameter : string password
  <details markdown="1">
 <summary> 파일 생성 </summary>
  
-post 방식
+### post 방식
 ##  /user/save/file
   
      RequestBody  
@@ -175,7 +175,7 @@ post 방식
  <details markdown="1">
 <summary> 구매한 파일 </summary>
  
-get 방식
+### get 방식
 ## /user/boughtfiles
 RequestParam String email
 (사용자의 이메일) 
@@ -186,7 +186,7 @@ RequestParam String email
  <details markdown="1">
 <summary> 파일 구매 </summary>
  
-post 방식
+### post 방식
 ##  /user/buy/file
   
      @RequestBody  
